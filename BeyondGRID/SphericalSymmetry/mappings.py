@@ -16,6 +16,9 @@ class linear:
     def rescale_grid(self, x):
         return self.A * x + self.B
 
+    def unscale_grid(self, X):
+        return X / self.A - self.B / self.A
+
     def jacobian(self, x):
         return 1 / self.A
 
@@ -33,6 +36,9 @@ class harald_scaling:
 
     def rescale_grid(self, x):
         return self.B / (x - self.A) - self.C
+
+    def unscale_grid(self, X):
+        return self.A + (self.B) / (X + self.C)
 
     def jacobian(self, x):
         return -((x - self.A) ** 2.0) / self.B
